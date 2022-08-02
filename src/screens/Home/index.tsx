@@ -46,10 +46,21 @@ export function Home() {
 
   function handleFilterLoginData() {
     // Filter results inside data, save with setSearchListData
+    if (searchText.length > 0) {
+      const filteredList = searchListData.filter((item) =>
+        item.service_name.includes(searchText)
+      );
+
+      setSearchListData(filteredList);
+    }
   }
 
   function handleChangeInputText(text: string) {
-    // Update searchText value
+    if (text === "") {
+      setSearchListData(data);
+    } else {
+      setSearchText(text);
+    }
   }
 
   useFocusEffect(
